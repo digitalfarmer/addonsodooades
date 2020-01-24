@@ -20,6 +20,7 @@
             <tree string="Patient">
                     <field name="name_seq"/>
                     <field name="patient_name"/>
+                    <field name="age_group" />
                     <field name="patient_age"/>
                     <field name="gender"/>
                     <field name="notes"/>
@@ -34,6 +35,7 @@
         <field name="arch" type="xml">
             <form string="Patients">
                 <sheet>
+                        <field name="image" widget="image" class="oe_left oe_avatar"/>
 <!--                    sequence-->
                         <div>
                             <h1>
@@ -43,16 +45,22 @@
 <!--                    endsequence-->
                     <group>
                         <group>
-                             <field name="patient_name"/>
-                            <field name="name"/>
+                            <field name="patient_name"/>
+<!--                            <field name="name_seq"/>-->
+                            <field name="gender"/>
+
+
                         </group>
                         <group>
+                            <field name="name"/>
                             <field name="patient_age"/>
+                            <field name="age_group" />
+
                         </group>
                     </group>
                     <group>
                         <field name="notes"/>
-                        <field name="image"/>
+<!--                        <field name="image" wigdet="image"/>-->
                     </group>
                 </sheet>
                 <div class="oe_chatter">
