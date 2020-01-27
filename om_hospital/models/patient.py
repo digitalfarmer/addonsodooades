@@ -1,4 +1,5 @@
 from odoo import  models, fields,api , _
+from odoo import exceptions
 
 class SaleOrderInherit(models.Model):
     _inherit = 'sale.order'
@@ -11,11 +12,17 @@ class HospitalPatient(models.Model):
     _description = 'Partient Record'
     _rec_name = 'name_seq'
 
+    @api.constrains('patient_age')
+    def check_age(self):
+        for rec in self:
+            if rec.patient_age<17:
+                raise ValueError(_('Usia Minimal 17 tahun'))
+
     @api.depends('patient_age')
     def set_age_group(self):
         for rec in self :
             if rec.patient_age:
-                if rec.patient_age< 18:
+                if rec.patient_age< 25:
                     rec.age_group='minor'
                 else :
                     rec.age_group='mayor'
