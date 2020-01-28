@@ -4,11 +4,12 @@ class HospitalAppointment(models.Model):
     _name = 'hospital.appointment'
     _description = 'Appointment'
     _inherit = ['mail.thread','mail.activity.mixin']
+    _order = 'id desc'
 
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
-            vals['name'] = self.env['ir.sequence'].next_by_code('hospital.appointment') or _('New')
+            vals['name'] = self.env['ir.sequence'].next_by_code('hospital.appointment.sequence') or _('New')
             result = super(HospitalAppointment, self).create(vals)
             return result
 
