@@ -20,3 +20,9 @@ class HospitalAppointment(models.Model):
     patient_age = fields.Integer('Age', related='patient_id.patient_age')
     note = fields.Text('Registration Note', default=_get_default_note)
     appointment_date = fields.Date('Date', required=True)
+    state = fields.Selection([
+        ('draft','Draft'),
+        ('confirm', 'Confirm'),
+        ('done', 'Done'),
+        ('cancel', 'Canceled')
+    ], string='Status', readonly=True, default='draft')
