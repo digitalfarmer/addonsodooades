@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+<!--    action from smartbutton type action-->
+    <record id="open_patient_appointments" model="ir.actions.act_window">
+        <field name="name">Appointments</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    
     <!-- Inherit Form View to Modify sale order -->
     <record id="sale_order_inherit" model="ir.ui.view">
         <field name="name">sale.order.inherit</field>
@@ -37,6 +46,10 @@
                 <sheet>
                         <div class="oe_button_box" name="button_box">
                             <button name="open_patient_appointments" type="object" class="oe_stat_button" icon="fa-calendar">
+                                <field name="appointment_count" string="Appointment" widget="statinfo"/>
+                            </button>
+
+                            <button name="%(open_patient_appointments)d" type="action" class="oe_stat_button" icon="fa-usd">
                                 <field name="appointment_count" string="Appointment" widget="statinfo"/>
                             </button>
                         </div>
