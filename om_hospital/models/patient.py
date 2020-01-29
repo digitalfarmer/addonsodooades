@@ -26,12 +26,28 @@ class HospitalPatient(models.Model):
                     rec.age_group='minor'
                 else :
                     rec.age_group='mayor'
+    @api.multi
+    def open_patient_appointments(self):
+        return {
+            'name': _('Appointment'),
+            'domain': [('patient_id', '=', self.id)],
+            'view_type': 'form',
+            'res_model': 'hospital.appointment',
+            'view_id': False,
+            'view_mode': 'tree,form',
+            'type': 'ir.actions.act_window'
+        }
+
+    def get_appointment_count(self):
+        count = self.env['hospital.appointment'].search_count([('patient_id', '=', self.id)])
+        self.count = count
 
     patient_name = fields.Char(string='Name', required=True, track_visibility='always')
     patient_age = fields.Integer('Age', track_visibility='always')
     notes = fields.Text(string='Registrtion Notes')
     image = fields.Binary(string='Image' , attachment=True)
     name = fields.Char(string='Test')
+    appointment_count= fields.Integer('Appointment', compute='get_appointment_count')
     # sequence fields
     name_seq = fields.Char(string='Patient ID',reuired=True, copy=False, readonly=True,
                            index=True, default=lambda self: _("New"))
