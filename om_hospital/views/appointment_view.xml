@@ -43,6 +43,15 @@
                     <group>
                         <field name="note"/>
                     </group>
+<!--                        notebook appointment-->
+                    <notebook>
+                        <page string="Doctor">
+                            <field name="doctor_note"/>
+                        </page>
+                        <page string="Pharmacy">
+                            <field name="pharmacy_note"/>
+                        </page>
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>

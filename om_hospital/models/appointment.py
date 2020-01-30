@@ -27,6 +27,8 @@ class HospitalAppointment(models.Model):
     patient_id = fields.Many2one('hospital.patient', string='Patient', required=True)
     patient_age = fields.Integer('Age', related='patient_id.patient_age')
     note = fields.Text('Registration Note', default=_get_default_note)
+    doctor_note = fields.Text('Doctor Notes')
+    pharmacy_note = fields.Text('Pharmacy Notes')
     appointment_date = fields.Date('Date', required=True)
     state = fields.Selection([
         ('draft','Draft'),
