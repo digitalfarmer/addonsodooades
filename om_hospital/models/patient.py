@@ -70,6 +70,7 @@ class HospitalPatient(models.Model):
         ('mayor','Mayor'),
         ('minor','Minor')
     ],string='Age Group', compute='set_age_group')
+    active= fields.Boolean('Active',default=True)
 
     # sequence label
     @api.model
