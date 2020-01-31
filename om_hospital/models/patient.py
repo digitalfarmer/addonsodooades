@@ -7,6 +7,7 @@ class ResPartners(models.Model):
     @api.model
     def create(self, vals_list):
         res = super(ResPartners, self).create(vals_list)
+        # todo is here
         print("Yes this working corectly")
         return  res
 
